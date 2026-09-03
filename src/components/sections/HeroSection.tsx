@@ -178,8 +178,8 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Subtle bottom gradient to blend seamlessly into following sections */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#faf7f2] via-[#faf7f2]/60 to-transparent z-40 pointer-events-none" />
+      {/* Bottom Cloudy Fog Mist Layer blending into Weekend Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-[#e8ded1] via-[#e8ded1]/80 via-[#faf7f2]/50 to-transparent z-40 pointer-events-none" />
     </div>
   );
 };
