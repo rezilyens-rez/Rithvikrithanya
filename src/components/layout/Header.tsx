@@ -1,25 +1,88 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { MandalaLogo } from "@/components/icons/MandalaLogo";
 import { navigationConfig, NavItem } from "@/config/navigation";
 import { Menu, X } from "lucide-react";
 
 export const Header: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<string>("RITHANYAA");
+  const [activeItem, setActiveItem] = useState<string>("");
+  const [isPastHero, setIsPastHero] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // 1. Detect if scrolled past the hero section (approx 70% of screen height)
+      const heroThreshold = window.innerHeight * 0.7;
+      setIsPastHero(window.scrollY > heroThreshold);
+
+      // 2. ScrollSpy: Find the active section in view
+      const scrollPosition = window.scrollY + 200;
+
+      if (window.scrollY < heroThreshold) {
+        setActiveItem("");
+        return;
+      }
+
+      for (let i = navigationConfig.navItems.length - 1; i >= 0; i--) {
+        const item = navigationConfig.navItems[i];
+        const elementId = item.href.replace("#", "");
+        const element = document.getElementById(elementId);
+        if (element) {
+          const top = element.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveItem(item.label);
+            return;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    label: string
+  ) => {
+    e.preventDefault();
+    setActiveItem(label);
+
+    const targetId = href.replace("#", "");
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setActiveItem("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-transparent py-5 sm:py-6 transition-all duration-300">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-out ${
+        isPastHero
+          ? "bg-[#faf7f2]/92 dark:bg-stone-950/92 backdrop-blur-md border-b border-stone-200/60 dark:border-stone-800/60 shadow-xs py-3.5 sm:py-4"
+          : "bg-transparent py-5 sm:py-6"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Left Side: Logo & Date / Location */}
-        <Link
-          href="/"
+        <a
+          href="#"
+          onClick={handleLogoClick}
           className="flex items-center gap-3 sm:gap-4 group cursor-pointer"
         >
           <MandalaLogo
-            size={36}
+            size={34}
             color="#b38e5d"
             className="shrink-0 transition-transform duration-500 group-hover:rotate-45"
           />
@@ -28,7 +91,7 @@ export const Header: React.FC = () => {
             <span className="text-[#b38e5d] font-bold text-xs mx-0.5">•</span>
             <span className="whitespace-nowrap">{navigationConfig.location}</span>
           </div>
-        </Link>
+        </a>
 
         {/* Right Side: Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-8 lg:gap-10">
@@ -39,10 +102,10 @@ export const Header: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setActiveItem(item.label)}
+                onClick={(e) => handleNavClick(e, item.href, item.label)}
                 className={`group relative py-1 text-[11.5px] lg:text-[12.5px] tracking-[0.2em] font-medium uppercase transition-colors duration-300 cursor-pointer ${
                   isActive
-                    ? "text-stone-900 dark:text-stone-100 font-semibold"
+                    ? "text-stone-950 dark:text-stone-100 font-semibold"
                     : "text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100"
                 }`}
               >
@@ -66,7 +129,7 @@ export const Header: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="p-2 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white transition-colors"
+            className="p-2 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white transition-colors cursor-pointer"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -83,11 +146,11 @@ export const Header: React.FC = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => {
-                    setActiveItem(item.label);
+                  onClick={(e) => {
+                    handleNavClick(e, item.href, item.label);
                     setMobileMenuOpen(false);
                   }}
-                  className={`flex items-center justify-between text-xs tracking-[0.2em] font-medium uppercase py-2 border-b border-stone-200/40 dark:border-stone-800/40 transition-colors ${
+                  className={`flex items-center justify-between text-xs tracking-[0.2em] font-medium uppercase py-2 border-b border-stone-200/40 dark:border-stone-800/40 transition-colors cursor-pointer ${
                     isActive
                       ? "text-[#b38e5d] font-semibold"
                       : "text-stone-700 dark:text-stone-300 hover:text-[#b38e5d]"
