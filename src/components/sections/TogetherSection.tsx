@@ -106,7 +106,7 @@ export const TogetherSection: React.FC = () => {
   return (
     <section
       id="together"
-      className="relative w-full bg-[#f4ece1] text-stone-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-10 scroll-mt-16 overflow-hidden border-b border-[#c5a059]/30"
+      className="relative w-full bg-[#f4ece1] text-[#3e1f14] py-16 sm:py-20 px-4 sm:px-6 lg:px-10 scroll-mt-16 overflow-hidden border-b border-[#c5a059]/30"
     >
       {/* Background Scrapbook Pinboard Atmosphere */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#b38e5d_0.75px,transparent_0.75px)] [background-size:24px_24px] pointer-events-none" />
@@ -123,7 +123,7 @@ export const TogetherSection: React.FC = () => {
             FAMILY MEMORIES &amp; BOND
           </span>
 
-          <h2 className="text-3xl sm:text-5xl font-serif text-stone-900 tracking-tight font-normal mt-1.5 mb-2.5">
+          <h2 className="text-3xl sm:text-5xl font-serif text-[#4a0e17] tracking-tight font-normal mt-1.5 mb-2.5">
             Together
           </h2>
 
@@ -137,7 +137,7 @@ export const TogetherSection: React.FC = () => {
             <div className="h-[1px] flex-1 bg-[#b38e5d]" />
           </div>
 
-          <p className="text-stone-700 text-xs sm:text-sm md:text-base font-serif italic max-w-xl mx-auto leading-relaxed">
+          <p className="text-[#3e1f14] text-xs sm:text-sm md:text-base font-serif italic max-w-xl mx-auto leading-relaxed">
             &ldquo;Laughter, blessings, and cherished bonds that span across generations.&rdquo;
           </p>
         </div>

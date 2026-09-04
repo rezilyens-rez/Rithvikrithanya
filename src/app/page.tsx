@@ -9,7 +9,7 @@ import { GratitudeSection } from "@/components/sections/GratitudeSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#faf7f2] text-stone-900">
+    <main className="min-h-screen bg-[#faf7f2] text-[#3e1f14]">
       {/* 3D Parallax Hero Section */}
       <HeroSection />
 

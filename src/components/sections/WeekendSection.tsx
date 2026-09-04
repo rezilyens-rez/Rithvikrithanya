@@ -102,12 +102,10 @@ export const WeekendSection: React.FC = () => {
         }}
       >
         {/* Top Tagline */}
-        <span className="text-[10.5px] sm:text-xs tracking-[0.3em] text-[#b38e5d] uppercase font-semibold mb-2">
-          TWO BEGINNINGS. ONE FAMILY.
-        </span>
+       
 
         {/* Main Title with Refined Typography */}
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif text-stone-900 tracking-tight font-normal leading-[1.15] max-w-2xl mx-auto mb-2.5">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif text-[#4a0e17] tracking-tight font-normal leading-[1.15] max-w-2xl mx-auto mb-2.5">
           A Weekend <br />
           We Will Always Carry
         </h2>
@@ -123,7 +121,7 @@ export const WeekendSection: React.FC = () => {
         </div>
 
         {/* Subtitle */}
-        <p className="text-stone-700 text-xs sm:text-sm md:text-base font-serif italic mb-7 sm:mb-9 tracking-wide font-normal">
+        <p className="text-[#3e1f14] text-xs sm:text-sm md:text-base font-serif italic mb-7 sm:mb-9 tracking-wide font-normal">
           Music. Tradition. Family. Blessings.
         </p>
 

@@ -50,7 +50,7 @@ export const RithanyaaSection: React.FC = () => {
   return (
     <section
       id="rithanyaa"
-      className="relative w-full min-h-screen lg:h-screen lg:min-h-[700px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-stone-900 scroll-mt-0 overflow-hidden"
+      className="relative w-full min-h-screen lg:h-screen lg:min-h-[700px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] scroll-mt-0 overflow-hidden"
     >
       {/* --- 1. FULL-BLEED PANORAMIC UPPER BANNER (IMAGE ON LEFT, TEXT ON RIGHT) --- */}
       <div className="relative flex-1 min-h-0 w-full overflow-hidden flex flex-col justify-center">
@@ -94,7 +94,7 @@ export const RithanyaaSection: React.FC = () => {
             </div>
 
             {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-stone-900 tracking-tight leading-[1.12] font-normal pt-0.5">
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight leading-[1.12] font-normal pt-0.5">
               Rithanyaa’s <br />
               Sangeeta Upanyasam
             </h2>
@@ -121,8 +121,8 @@ export const RithanyaaSection: React.FC = () => {
             </p>
 
             {/* Description */}
-            <p className="text-xs sm:text-[13.5px] text-stone-700 leading-relaxed font-light">
-              An evening of Carnatic music, storytelling and devotion presented by <strong className="font-semibold text-stone-900">Kum. Rithanyaa Venkat</strong> under the guidance of her guru, <strong className="font-semibold text-stone-900">Smt. Vanitha Suresh</strong>.
+            <p className="text-xs sm:text-[13.5px] text-[#3e1f14] leading-relaxed font-light">
+              An evening of Carnatic music, storytelling and devotion presented by <strong className="font-semibold text-[#4a0e17]">Kum. Rithanyaa Venkat</strong> under the guidance of her guru, <strong className="font-semibold text-[#4a0e17]">Smt. Vanitha Suresh</strong>.
             </p>
 
             {/* View More Action Button */}

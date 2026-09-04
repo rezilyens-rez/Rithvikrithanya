@@ -63,7 +63,7 @@ export const RithvikSection: React.FC = () => {
   return (
     <section
       id="rithvik"
-      className="relative w-full min-h-screen lg:h-screen lg:min-h-[720px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-stone-900 py-4 sm:py-5 px-3 sm:px-6 lg:px-10 scroll-mt-0 overflow-hidden"
+      className="relative w-full min-h-screen lg:h-screen lg:min-h-[720px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] py-4 sm:py-5 px-3 sm:px-6 lg:px-10 scroll-mt-0 overflow-hidden"
     >
       <div className="w-full max-w-[1480px] mx-auto flex-1 flex flex-col justify-between">
         {/* --- 1. HEADER SECTION --- */}
@@ -85,7 +85,7 @@ export const RithvikSection: React.FC = () => {
           </span>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-stone-900 tracking-tight font-normal mb-1 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight font-normal mb-1 leading-tight">
             Rithvik’s Upanayanam
           </h2>
 
@@ -111,7 +111,7 @@ export const RithvikSection: React.FC = () => {
           </p>
 
           {/* Description */}
-          <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed max-w-xl mx-auto font-light">
+          <p className="text-xs sm:text-[13px] text-[#3e1f14] leading-relaxed max-w-xl mx-auto font-light">
             Surrounded by love, guided by tradition, Rithvik took his sacred step into a life of learning, discipline and responsibility.
           </p>
         </div>
@@ -124,7 +124,7 @@ export const RithvikSection: React.FC = () => {
               onClick={() => openLightbox(idx)}
               className={`group relative rounded-2xl overflow-hidden border border-[#c5a059]/40 shadow-sm flex flex-col justify-end p-3 transition-all duration-300 hover:shadow-xl hover:border-[#b38e5d] hover:scale-[1.015] cursor-pointer ${item.colSpan} min-h-[140px] sm:min-h-[160px] lg:min-h-0 h-full bg-stone-900`}
             >
-              {/* Image Layer */}
+              {/* Image Layer (Pure Photo Display) */}
               <Image
                 src={resolveImageUrl(item.imageUrl)}
                 alt={item.title}
@@ -132,16 +132,6 @@ export const RithvikSection: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover object-center transform transition-transform duration-700 group-hover:scale-106"
               />
-
-              {/* Bottom Inset Vignette Overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pt-6 pb-2.5 px-3 z-10 pointer-events-none flex items-end justify-between">
-                <h4 className="text-xs sm:text-[13px] font-serif text-[#fdfbf7] font-medium leading-tight drop-shadow-xs">
-                  {item.title}
-                </h4>
-                <span className="text-[10px] text-[#e6d8be] opacity-0 group-hover:opacity-100 transition-opacity font-mono uppercase tracking-wider">
-                  VIEW FULL ⤢
-                </span>
-              </div>
 
               {/* Inset Gold Hairline Frame */}
               <div className="absolute inset-1.5 rounded-xl border border-white/20 pointer-events-none group-hover:border-[#d4af37]/60 transition-colors" />
@@ -152,7 +142,7 @@ export const RithvikSection: React.FC = () => {
         {/* --- 3. BOTTOM SACRED BANNER & VIEW MORE BUTTON --- */}
         <div className="shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 pb-1 border-t border-[#c5a059]/25">
           {/* Sacred Quote */}
-          <div className="flex items-center gap-2 text-stone-700 text-center sm:text-left">
+          <div className="flex items-center gap-2 text-[#3e1f14] text-center sm:text-left">
             <svg
               className="w-3.5 h-3.5 text-[#b38e5d] shrink-0 hidden sm:block"
               viewBox="0 0 24 24"
@@ -163,7 +153,7 @@ export const RithvikSection: React.FC = () => {
               <path d="M12 4c-1.5 3-4 6-4 9a4 4 0 0 0 8 0c0-3-2.5-6-4-9z" />
               <path d="M6 13c0-2 1.5-4 3-5.5C8 9 7 11 7 13a5 5 0 0 0 5 5 5 5 0 0 0 5-5c0-2-1-4-2-5.5 1.5 1.5 3 3.5 3 5.5a5 5 0 0 1-10 0z" />
             </svg>
-            <p className="font-serif italic text-[11.5px] sm:text-xs md:text-[13px] tracking-wide text-stone-800">
+            <p className="font-serif italic text-[11.5px] sm:text-xs md:text-[13px] tracking-wide text-[#3e1f14]">
               &ldquo;In the light of knowledge, may you walk with clarity. In the strength of tradition, may you live with purpose.&rdquo;
             </p>
           </div>

@@ -17,40 +17,35 @@ export const HeroSection: React.FC = () => {
           sizes="100vw"
           className="object-cover object-center brightness-105 contrast-[1.02]"
         />
-        {/* Very subtle soft top-only scrim to ensure white text pops without dimming the image */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent pointer-events-none" />
+        {/* No dark black scrim needed with colored text */}
       </div>
 
-      {/* 2. Hero Content / Typography placed in the upper portion */}
-      <div className="relative z-10 flex flex-col items-center justify-start pt-14 sm:pt-18 md:pt-22 lg:pt-24 px-4 text-center max-w-3xl mx-auto">
-        {/* Headline in White */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.15] sm:leading-[1.18] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] font-normal">
-          Two Beginnings.
-          <br />
-          One Family.
+      {/* 2. Hero Content / Typography placed in the plain upper area */}
+      <div className="relative z-10 flex flex-col items-center justify-start pt-16 sm:pt-18 md:pt-20 lg:pt-24 px-4 text-center max-w-4xl mx-auto">
+        {/* Headline in Deep Royal Crimson & Burgundy */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-serif text-[#4a0e17] tracking-tight leading-tight font-medium drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">
+          Two Beginnings. One Family.
         </h1>
 
-        {/* Flourish Divider */}
-        <div className="flex items-center justify-center gap-2.5 my-2.5 sm:my-3.5">
-          <div className="w-10 sm:w-16 h-[1px] bg-[#f6d788]/80" />
+        {/* Flourish Divider in Warm Radiant Gold */}
+        <div className="flex items-center justify-center gap-2.5 my-2 sm:my-2.5">
+          <div className="w-10 sm:w-16 h-[1.5px] bg-[#b38e5d]" />
           <svg
             viewBox="0 0 24 16"
-            className="w-5 h-3.5 text-[#f6d788] fill-none stroke-current stroke-[1.4] drop-shadow-sm"
+            className="w-4 h-3 sm:w-5 sm:h-3.5 text-[#b38e5d] fill-none stroke-current stroke-[1.5] drop-shadow-xs"
           >
             <circle cx="12" cy="8" r="2" fill="currentColor" />
             <path d="M12 4C10 6 10 10 12 12C14 10 14 6 12 4Z" />
             <path d="M5 8C5 8 8 5 11 8C8 11 5 8 5 8Z" />
             <path d="M19 8C19 8 16 5 13 8C16 11 19 8 19 8Z" />
           </svg>
-          <div className="w-10 sm:w-16 h-[1px] bg-[#f6d788]/80" />
+          <div className="w-10 sm:w-16 h-[1.5px] bg-[#b38e5d]" />
         </div>
 
-        {/* Subtext Paragraph in White */}
-        <div className="max-w-lg mx-auto space-y-0.5 text-xs sm:text-sm md:text-[15px] font-serif text-white/95 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          <p>An evening of music. A morning of tradition.</p>
-          <p>A weekend filled with blessings, love and memories</p>
-          <p>to cherish for a lifetime.</p>
-        </div>
+        {/* Subtext in Rich Warm Umber / Mahogany for clear, crisp contrast */}
+        <p className="max-w-2xl sm:max-w-3xl mx-auto text-xs sm:text-[13.5px] md:text-[15px] lg:text-base font-serif text-[#3e1f14] leading-relaxed font-normal drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]">
+          An evening of music. A morning of tradition. A weekend filled with blessings, love and memories to cherish for a lifetime.
+        </p>
       </div>
 
       {/* Subtle Bottom Fog / Blend into Weekend Section using matching #d6a978 tone */}

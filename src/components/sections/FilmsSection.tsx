@@ -20,7 +20,7 @@ export const FilmsSection: React.FC = () => {
 
   const currentVideo = videos[currentIndex] || {
     id: 1,
-    title: "Sangeetha Upanyasam | Andal Kalyanam",
+    title: "04 - July - 2026 Sangeetha Upanyasam | Andal Kalyanam | Rithanyaa | 60 FPS 4K Video",
     subtitle: "Kum. Rithanyaa • 4K 60FPS Concert Video",
     duration: "4K Video",
     tag: "Sangeetha Upanyasam",
@@ -64,7 +64,7 @@ export const FilmsSection: React.FC = () => {
           CEREMONY VIDEOS &amp; 4K FILMS
         </span>
 
-        <h2 className="text-3xl sm:text-5xl font-serif text-stone-900 tracking-tight mt-1.5 mb-2.5 font-normal">
+        <h2 className="text-3xl sm:text-5xl font-serif text-[#4a0e17] tracking-tight mt-1.5 mb-2.5 font-normal">
           The Films
         </h2>
 
@@ -78,7 +78,7 @@ export const FilmsSection: React.FC = () => {
           <div className="h-[1px] flex-1 bg-[#b38e5d]" />
         </div>
 
-        <p className="text-stone-600 text-xs sm:text-sm md:text-base font-serif italic max-w-lg mx-auto leading-relaxed">
+        <p className="text-[#3e1f14] text-xs sm:text-sm md:text-base font-serif italic max-w-lg mx-auto leading-relaxed">
           &ldquo;Ceremony recordings, musical offerings, and sacred rituals in pristine 4K resolution.&rdquo;
         </p>
       </div>
@@ -184,7 +184,7 @@ export const FilmsSection: React.FC = () => {
                 className={`relative flex flex-col items-start text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden border ${
                   isSelected
                     ? "bg-[#0e2947] text-white border-[#d4af37] shadow-lg shadow-sky-950/25 scale-[1.02]"
-                    : "bg-white/85 hover:bg-white text-stone-800 border-stone-200/90 hover:border-[#d4af37]/60 shadow-xs hover:shadow-md"
+                    : "bg-white/85 hover:bg-white text-[#3e1f14] border-stone-200/90 hover:border-[#d4af37]/60 shadow-xs hover:shadow-md"
                 }`}
               >
                 {/* Active Indicator Top Accent */}
@@ -207,7 +207,7 @@ export const FilmsSection: React.FC = () => {
                     className={`text-[10px] font-mono tracking-wider px-2 py-0.5 rounded-full ${
                       isSelected
                         ? "bg-white/15 text-[#f6d788]"
-                        : "bg-stone-100 text-stone-600"
+                        : "bg-stone-100 text-[#5c3a2a]"
                     }`}
                   >
                     {vid.duration}
@@ -217,7 +217,7 @@ export const FilmsSection: React.FC = () => {
                 {/* Video Title */}
                 <h4
                   className={`font-serif text-xs sm:text-[13px] font-medium leading-snug line-clamp-2 ${
-                    isSelected ? "text-white" : "text-stone-900"
+                    isSelected ? "text-white" : "text-[#4a0e17]"
                   }`}
                 >
                   {vid.title}
@@ -226,7 +226,7 @@ export const FilmsSection: React.FC = () => {
                 {/* Video Subtitle */}
                 <span
                   className={`text-[10px] font-serif italic mt-1 block line-clamp-1 ${
-                    isSelected ? "text-stone-300" : "text-stone-500"
+                    isSelected ? "text-stone-300" : "text-[#7a5542]"
                   }`}
                 >
                   {vid.subtitle}

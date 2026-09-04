@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} antialiased bg-[#faf7f2] text-stone-900 min-h-screen flex flex-col selection:bg-[#b38e5d]/30 selection:text-stone-950`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} antialiased bg-[#faf7f2] text-[#3e1f14] min-h-screen flex flex-col selection:bg-[#b38e5d]/30 selection:text-[#4a0e17]`}
       >
         <Header />
         <main className="flex-grow">{children}</main>

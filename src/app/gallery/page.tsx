@@ -82,14 +82,14 @@ export default function GalleryPage() {
   }, [selectedPhotoIndex, nextPhoto, prevPhoto]);
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] text-stone-900 selection:bg-[#d4af37]/30">
+    <div className="min-h-screen bg-[#faf7f2] text-[#3e1f14] selection:bg-[#d4af37]/30 selection:text-[#4a0e17]">
       {/* --- HERO HEADER (Matches Reference Image Layout & Site Typography) --- */}
       <section className="pt-8 sm:pt-12 pb-8 sm:pb-12 px-6 sm:px-10 lg:px-16 max-w-[1400px] mx-auto">
         {/* Top Back Navigation Bar */}
         <div className="mb-6 sm:mb-8 flex items-center justify-between border-b border-[#c5a059]/30 pb-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-stone-700 hover:text-stone-950 transition-colors group"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-[#3e1f14] hover:text-[#4a0e17] transition-colors group font-medium"
           >
             <ArrowLeft
               size={16}
@@ -112,10 +112,10 @@ export default function GalleryPage() {
 
         {/* Title on Left & Subtitle on Right with Site Serif Typography */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tight font-normal text-stone-900 leading-[1.02]">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tight font-normal text-[#4a0e17] leading-[1.02]">
             Photo Gallery
           </h1>
-          <p className="text-stone-600 text-xs sm:text-sm md:text-base font-serif italic max-w-xs md:text-right leading-relaxed mb-1">
+          <p className="text-[#3e1f14] text-xs sm:text-sm md:text-base font-serif italic max-w-xs md:text-right leading-relaxed mb-1">
             Captured moments from our sacred rituals, concert debut, and family blessings.
           </p>
         </div>
