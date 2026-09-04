@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { siteImages, resolveImageUrl } from "@/config/images";
 
 export const WeekendSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -33,9 +34,9 @@ export const WeekendSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="weekend"
-      className="relative min-h-[880px] lg:h-screen lg:min-h-[740px] lg:max-h-[1080px] w-full overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 scroll-mt-0 bg-[#f3eae0]"
+      className="relative min-h-[880px] lg:h-screen lg:min-h-[740px] lg:max-h-[1080px] w-full overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 scroll-mt-0 bg-[#d6a978]"
     >
-      {/* 1. Background Parallax Layer: Temple Scenery & Invitation BG */}
+      {/* 1. Background Parallax Layer: Temple Scenery & Invitation BG (Softened / reduced opacity) */}
       <div
         className="absolute -top-[10%] inset-x-0 h-[120%] w-full z-0 will-change-transform pointer-events-none"
         style={{
@@ -43,16 +44,18 @@ export const WeekendSection: React.FC = () => {
         }}
       >
         <Image
-          src="/images/hero/invitation bg frame.png"
+          src={resolveImageUrl(siteImages.weekend.invitationBackground)}
           alt="Temple Background"
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center"
+          className="object-cover object-center opacity-35"
         />
+        {/* Soft Warm Tint Overlay to gently tone down yellow saturation */}
+        <div className="absolute inset-0 bg-[#d6a978]/50" />
       </div>
 
-      {/* 2. Middle Parallax Layer: Ornate Side Frame */}
+      {/* 2. Middle Parallax Layer: Ornate Side Frame (Reduced opacity) */}
       <div
         className="absolute -top-[5%] inset-x-0 h-[110%] w-full z-10 will-change-transform pointer-events-none"
         style={{
@@ -60,32 +63,32 @@ export const WeekendSection: React.FC = () => {
         }}
       >
         <Image
-          src="/images/hero/sideframe1.png"
+          src={resolveImageUrl(siteImages.weekend.sideFrame)}
           alt="Ornate Side Frame"
           fill
           sizes="100vw"
           priority
-          className="object-cover sm:object-contain object-center w-full h-full"
+          className="object-cover sm:object-contain object-center w-full h-full opacity-60"
         />
       </div>
 
       {/* --- Dynamic Parallax Cloudy Mist Transitions --- */}
 
-      {/* Top Cloud Canopy & Parting Fog */}
+      {/* Top Cloud Canopy & Parting Fog seamlessly blending from Hero Section */}
       <div
-        className="absolute -top-20 inset-x-0 h-64 z-15 pointer-events-none will-change-transform bg-gradient-to-b from-[#e8ded1] via-[#e8ded1]/90 via-[#faf7f2]/70 to-transparent"
+        className="absolute -top-20 inset-x-0 h-64 z-15 pointer-events-none will-change-transform bg-gradient-to-b from-[#d6a978] via-[#d6a978]/90 via-[#d6a978]/60 to-transparent"
         style={{
           transform: `translate3d(0, -${relScroll * 0.25}px, 0)`,
         }}
       />
       <div
-        className="absolute -top-24 -left-28 w-[70vw] h-64 z-15 pointer-events-none rounded-[100%] blur-3xl will-change-transform bg-gradient-to-br from-[#e4d8c8] via-[#f5ede3]/90 to-transparent"
+        className="absolute -top-24 -left-28 w-[70vw] h-64 z-15 pointer-events-none rounded-[100%] blur-3xl will-change-transform bg-gradient-to-br from-[#d6a978] via-[#e2be95]/80 to-transparent"
         style={{
           transform: `translate3d(-${relScroll * 0.1}px, -${relScroll * 0.28}px, 0)`,
         }}
       />
       <div
-        className="absolute -top-24 -right-28 w-[70vw] h-64 z-15 pointer-events-none rounded-[100%] blur-3xl will-change-transform bg-gradient-to-bl from-[#e8ded1] via-[#faf7f2]/90 to-transparent"
+        className="absolute -top-24 -right-28 w-[70vw] h-64 z-15 pointer-events-none rounded-[100%] blur-3xl will-change-transform bg-gradient-to-bl from-[#d6a978] via-[#e2be95]/80 to-transparent"
         style={{
           transform: `translate3d(${relScroll * 0.1}px, -${relScroll * 0.28}px, 0)`,
         }}
@@ -139,7 +142,7 @@ export const WeekendSection: React.FC = () => {
               <div className="absolute -inset-2 bg-[#d4af37]/15 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
               <div className="relative w-14 h-14 flex items-center justify-center">
                 <Image
-                  src="/images/hero/sithara.png"
+                  src={resolveImageUrl(siteImages.weekend.sitharaIcon)}
                   alt="Sithara Icon"
                   width={56}
                   height={56}
@@ -191,7 +194,7 @@ export const WeekendSection: React.FC = () => {
               <div className="absolute -inset-2 bg-[#d4af37]/15 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
               <div className="relative w-14 h-14 flex items-center justify-center">
                 <Image
-                  src="/images/hero/kalasam.png"
+                  src={resolveImageUrl(siteImages.weekend.kalasamIcon)}
                   alt="Kalasam Icon"
                   width={56}
                   height={56}

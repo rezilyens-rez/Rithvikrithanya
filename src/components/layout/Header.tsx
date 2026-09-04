@@ -2,22 +2,26 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MandalaLogo } from "@/components/icons/MandalaLogo";
 import { navigationConfig, NavItem } from "@/config/navigation";
 import { Menu, X } from "lucide-react";
 
 export const Header: React.FC = () => {
+  const pathname = usePathname();
   const [activeItem, setActiveItem] = useState<string>("");
   const [isPastHero, setIsPastHero] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    // If not on homepage, don't run homepage scroll calculations
+    if (pathname !== "/") return;
     const handleScroll = () => {
-      // 1. Detect if scrolled past the hero section (approx 70% of screen height)
-      const heroThreshold = window.innerHeight * 0.7;
+      // Detect if scrolled past the hero section
+      const heroThreshold = window.innerHeight * 0.75;
       setIsPastHero(window.scrollY > heroThreshold);
 
-      // 2. ScrollSpy: Find the active section in view
+      // ScrollSpy: Find the active section in view
       const scrollPosition = window.scrollY + 200;
 
       if (window.scrollY < heroThreshold) {
@@ -43,7 +47,7 @@ export const Header: React.FC = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -66,11 +70,16 @@ export const Header: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Hide global Header when on /gallery route
+  if (pathname === "/gallery" || pathname?.startsWith("/gallery")) {
+    return null;
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-out ${
         isPastHero
-          ? "bg-[#faf7f2]/92 dark:bg-stone-950/92 backdrop-blur-md border-b border-stone-200/60 dark:border-stone-800/60 shadow-xs py-3.5 sm:py-4"
+          ? "bg-[#faf7f2]/95 dark:bg-stone-950/95 backdrop-blur-md border-b border-[#c5a059]/30 shadow-md py-3.5 sm:py-4"
           : "bg-transparent py-5 sm:py-6"
       }`}
     >
@@ -83,12 +92,24 @@ export const Header: React.FC = () => {
         >
           <MandalaLogo
             size={34}
-            color="#b38e5d"
-            className="shrink-0 transition-transform duration-500 group-hover:rotate-45"
+            color={isPastHero ? "#b38e5d" : "#f6d788"}
+            className="shrink-0 transition-transform duration-500 group-hover:rotate-45 drop-shadow-sm"
           />
-          <div className="flex items-center gap-2.5 text-[11px] sm:text-[12.5px] tracking-[0.22em] font-medium text-stone-800 dark:text-stone-200 uppercase select-none">
+          <div
+            className={`flex items-center gap-2.5 text-[11px] sm:text-[12.5px] tracking-[0.22em] font-medium uppercase select-none transition-colors duration-300 ${
+              isPastHero
+                ? "text-stone-800 dark:text-stone-200"
+                : "text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+            }`}
+          >
             <span className="whitespace-nowrap">{navigationConfig.ceremonyDate}</span>
-            <span className="text-[#b38e5d] font-bold text-xs mx-0.5">•</span>
+            <span
+              className={`font-bold text-xs mx-0.5 ${
+                isPastHero ? "text-[#b38e5d]" : "text-[#f6d788]"
+              }`}
+            >
+              •
+            </span>
             <span className="whitespace-nowrap">{navigationConfig.location}</span>
           </div>
         </a>
@@ -104,16 +125,22 @@ export const Header: React.FC = () => {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href, item.label)}
                 className={`group relative py-1 text-[11.5px] lg:text-[12.5px] tracking-[0.2em] font-medium uppercase transition-colors duration-300 cursor-pointer ${
-                  isActive
-                    ? "text-stone-950 dark:text-stone-100 font-semibold"
-                    : "text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100"
+                  isPastHero
+                    ? isActive
+                      ? "text-stone-950 dark:text-stone-100 font-semibold"
+                      : "text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100"
+                    : isActive
+                    ? "text-[#f6d788] font-semibold drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+                    : "text-white/90 hover:text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
                 }`}
               >
                 <span>{item.label}</span>
 
                 {/* Animated Gold Underline on Hover and Active State */}
                 <span
-                  className={`absolute bottom-0 left-0 h-[2px] bg-[#b38e5d] transition-all duration-300 ease-out ${
+                  className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out ${
+                    isPastHero ? "bg-[#b38e5d]" : "bg-[#f6d788]"
+                  } ${
                     isActive
                       ? "w-full opacity-100"
                       : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
@@ -129,7 +156,11 @@ export const Header: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="p-2 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white transition-colors cursor-pointer"
+            className={`p-2 transition-colors cursor-pointer ${
+              isPastHero
+                ? "text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white"
+                : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] hover:text-[#f6d788]"
+            }`}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
