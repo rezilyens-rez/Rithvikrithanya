@@ -20,12 +20,12 @@ export const FilmsSection: React.FC = () => {
 
   const currentVideo = videos[currentIndex] || {
     id: 1,
-    title: "04 - July - 2026 Sangeetha Upanyasam | Andal Kalyanam | Rithanyaa | 60 FPS 4K Video",
-    subtitle: "Kum. Rithanyaa • 4K 60FPS Concert Video",
+    title: "03 - July - 2026 Upanayanam | Parayanam | Rithvik | 4k 60FPS",
+    subtitle: "Chi. Rithvik • 4K 60FPS Vedic Chanting",
     duration: "4K Video",
-    tag: "Sangeetha Upanyasam",
-    posterImage: "https://img.youtube.com/vi/5X4V4bEjD3k/maxresdefault.jpg",
-    videoEmbedUrl: "https://youtu.be/5X4V4bEjD3k",
+    tag: "Parayanam",
+    posterImage: "https://img.youtube.com/vi/x9yduwpW3ho/maxresdefault.jpg",
+    videoEmbedUrl: "https://youtu.be/x9yduwpW3ho",
   };
 
   const videoEmbedUrl = resolveVideoEmbedUrl(currentVideo.videoEmbedUrl || "");
@@ -46,7 +46,15 @@ export const FilmsSection: React.FC = () => {
     setIsPlaying(false);
   };
 
-  const videoIcons = [Music2, Flame, Sparkles, Film];
+  const getVideoIcon = (tag: string, index: number) => {
+    const lowerTag = (tag || "").toLowerCase();
+    if (lowerTag.includes("parayanam")) return Flame;
+    if (lowerTag.includes("udaya")) return Sparkles;
+    if (lowerTag.includes("sangeetha") || lowerTag.includes("music")) return Music2;
+    if (lowerTag.includes("brahmopadesam")) return Film;
+    const fallbackIcons = [Flame, Sparkles, Music2, Film];
+    return fallbackIcons[index % fallbackIcons.length];
+  };
 
   return (
     <section
@@ -127,14 +135,26 @@ export const FilmsSection: React.FC = () => {
               </div>
 
               {/* Bottom Title & Subtitle Banner */}
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col items-center text-center">
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 bg-gradient-to-t from-black/95 via-black/80 to-transparent flex flex-col items-center text-center">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#fdfbf7] tracking-wide font-normal max-w-2xl drop-shadow-md">
                   {currentVideo.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-300 font-serif italic mt-1 max-w-lg">
                   {currentVideo.subtitle}
                 </p>
-                <span className="text-[10px] sm:text-[11px] text-[#f6d788] font-mono uppercase tracking-[0.25em] mt-2 font-medium">
+
+                {(currentVideo as { disclaimer?: string }).disclaimer && (
+                  <div className="mt-2.5 max-w-2xl px-3.5 py-2 rounded-xl bg-black/60 border border-[#d4af37]/35 backdrop-blur-xs text-left">
+                    <p className="text-[10.5px] sm:text-[11.5px] leading-relaxed text-[#f4e6c8]/95 font-serif">
+                      <span className="font-semibold text-[#f6d788] not-italic font-mono uppercase tracking-wider text-[9.5px] sm:text-[10px] mr-1.5 inline-block">
+                        Disclaimer:
+                      </span>
+                      {(currentVideo as { disclaimer?: string }).disclaimer}
+                    </p>
+                  </div>
+                )}
+
+                <span className="text-[10px] sm:text-[11px] text-[#f6d788] font-mono uppercase tracking-[0.25em] mt-2.5 font-medium">
                   CLICK TO PLAY FILM ▶
                 </span>
               </div>
@@ -171,10 +191,24 @@ export const FilmsSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Active Video Disclaimer Callout Note */}
+        {(currentVideo as { disclaimer?: string }).disclaimer && (
+          <div className="mt-4 p-4 sm:p-4.5 rounded-2xl bg-[#4a0e17]/5 border border-[#c5a059]/30 backdrop-blur-xs text-[#3e1f14] shadow-xs max-w-4xl mx-auto">
+            <div className="flex items-start gap-2.5">
+              <span className="shrink-0 mt-0.5 px-2 py-0.5 rounded-md bg-[#b38e5d]/15 text-[#8c2a3e] font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
+                Disclaimer
+              </span>
+              <p className="text-xs sm:text-[13px] font-serif italic text-[#4a0e17]/90 leading-relaxed">
+                {(currentVideo as { disclaimer?: string }).disclaimer}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Clean 4-Card Playlist Selector Below */}
         <div className="mt-5 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
           {videos.map((vid, idx) => {
-            const IconComponent = videoIcons[idx % videoIcons.length];
+            const IconComponent = getVideoIcon(vid.tag, idx);
             const isSelected = idx === currentIndex;
 
             return (
@@ -231,6 +265,18 @@ export const FilmsSection: React.FC = () => {
                 >
                   {vid.subtitle}
                 </span>
+
+                {(vid as { disclaimer?: string }).disclaimer && (
+                  <span
+                    className={`text-[9px] font-mono uppercase tracking-wider mt-2 px-1.5 py-0.5 rounded ${
+                      isSelected
+                        ? "bg-[#d4af37]/20 text-[#f6d788]"
+                        : "bg-amber-100/80 text-amber-900"
+                    }`}
+                  >
+                    Audio Note
+                  </span>
+                )}
               </button>
             );
           })}
