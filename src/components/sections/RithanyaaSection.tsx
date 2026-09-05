@@ -50,36 +50,55 @@ export const RithanyaaSection: React.FC = () => {
   return (
     <section
       id="rithanyaa"
-      className="relative w-full min-h-screen lg:h-screen lg:min-h-[700px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] scroll-mt-0 overflow-hidden"
+      className="relative w-full min-h-0 lg:h-screen lg:min-h-[700px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] scroll-mt-0 overflow-hidden py-8 sm:py-10 lg:py-0"
     >
-      {/* --- 1. FULL-BLEED PANORAMIC UPPER BANNER (IMAGE ON LEFT, TEXT ON RIGHT) --- */}
-      <div className="relative flex-1 min-h-0 w-full overflow-hidden flex flex-col justify-center">
-        {/* Full-Bleed Left Side Stage Image */}
+      {/* --- 1. UPPER BANNER: DESKTOP PANORAMIC (lg:) & MOBILE STACKED/INTEGRATED (<lg:) --- */}
+      <div className="relative flex-1 min-h-0 w-full flex flex-col justify-center">
+        {/* Desktop-only Panoramic Background Image */}
         <div
           onClick={() => openLightbox(0)}
-          className="absolute top-0 left-0 bottom-0 w-full lg:w-[68%] xl:w-[65%] h-full z-0 cursor-pointer"
+          className="hidden lg:block absolute top-0 left-0 bottom-0 w-[68%] xl:w-[65%] h-full z-0 cursor-pointer"
         >
           <Image
             src={stagePhotoUrl}
             alt="Kum. Rithanyaa Sangeeta Upanyasam Stage"
             fill
             priority
-            sizes="(max-width: 1024px) 100vw, 68vw"
-            className="object-cover object-[20%_center] lg:object-[25%_center]"
+            sizes="68vw"
+            className="object-cover object-[25%_center]"
           />
-          {/* Seamless Soft Horizontal Gradient Mask (Fade from image into solid cream on right) */}
-          <div className="absolute inset-y-0 right-0 w-48 sm:w-72 lg:w-96 bg-gradient-to-l from-[#faf7f2] via-[#faf7f2]/85 via-[#faf7f2]/35 to-transparent z-10 pointer-events-none" />
-          {/* Subtle Top & Bottom Soft Blend */}
+          {/* Seamless Soft Horizontal Gradient Mask */}
+          <div className="absolute inset-y-0 right-0 w-72 lg:w-96 bg-gradient-to-l from-[#faf7f2] via-[#faf7f2]/85 via-[#faf7f2]/35 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#faf7f2]/60 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#faf7f2] via-[#faf7f2]/80 to-transparent z-10 pointer-events-none" />
         </div>
 
-        {/* Right Side Content & Typography (Over Solid Cream Background) */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-4 sm:py-6 flex justify-end items-center pointer-events-none">
-          <div className="max-w-xl lg:max-w-md xl:max-w-lg space-y-2.5 sm:space-y-3 pointer-events-auto text-left">
+        {/* Content Container */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-2 sm:py-4 lg:py-6 flex flex-col lg:flex-row lg:justify-end items-center">
+          {/* Mobile-only Stage Photo Card */}
+          <div
+            onClick={() => openLightbox(0)}
+            className="block lg:hidden relative w-full h-56 xs:h-64 sm:h-76 rounded-2xl overflow-hidden shadow-lg border border-[#c5a059]/40 mb-5 group cursor-pointer bg-stone-900"
+          >
+            <Image
+              src={stagePhotoUrl}
+              alt="Kum. Rithanyaa Sangeeta Upanyasam Stage"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-[center_30%] sm:object-center transform transition-transform duration-500 group-hover:scale-103"
+            />
+            <div className="absolute inset-2 rounded-xl border border-white/20 pointer-events-none" />
+            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-xs border border-white/20 text-[#f6d788] text-[10px] font-mono uppercase tracking-wider">
+              Tap to expand ⤢
+            </div>
+          </div>
+
+          {/* Typography & Details Card */}
+          <div className="w-full max-w-xl lg:max-w-md xl:max-w-lg space-y-2 xs:space-y-2.5 sm:space-y-3 text-left">
             {/* Header Badge */}
-            <div className="flex items-center gap-2.5">
-              <div className="w-6 h-6 sm:w-7 sm:h-7 relative flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="w-5 h-5 sm:w-7 sm:h-7 relative flex items-center justify-center shrink-0">
                 <Image
                   src="/images/hero/sithara.png"
                   alt="Sithara"
@@ -88,14 +107,14 @@ export const RithanyaaSection: React.FC = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="text-xs sm:text-sm font-mono tracking-[0.22em] text-[#9b6f38] uppercase font-semibold">
+              <span className="text-[11px] sm:text-sm font-mono tracking-[0.22em] text-[#9b6f38] uppercase font-semibold">
                 JULY 4, 2026 &nbsp;•&nbsp; EVENING
               </span>
             </div>
 
             {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight leading-[1.12] font-normal pt-0.5">
-              Rithanyaa’s <br />
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight leading-[1.12] font-normal pt-0.5">
+              Rithanyaa’s <br className="hidden sm:inline" />
               Sangeeta Upanyasam
             </h2>
 
@@ -116,7 +135,7 @@ export const RithanyaaSection: React.FC = () => {
             </div>
 
             {/* Poetic Subtitle */}
-            <p className="text-sm sm:text-base font-serif italic text-[#9b6f38] font-medium tracking-wide">
+            <p className="text-xs xs:text-sm sm:text-base font-serif italic text-[#9b6f38] font-medium tracking-wide">
               A debut. A voice. An offering.
             </p>
 
@@ -129,7 +148,7 @@ export const RithanyaaSection: React.FC = () => {
             <div className="pt-2 sm:pt-3">
               <a
                 href="/gallery?category=rithanyaa"
-                className="inline-flex items-center gap-2.5 px-6 py-2 rounded-full text-xs font-mono tracking-[0.22em] uppercase bg-[#0c2738] hover:bg-[#12364e] text-[#fdfbf7] border border-[#c5a059]/50 shadow-sm hover:shadow-md transition-all duration-300 font-medium group cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-5 sm:px-6 py-2 rounded-full text-xs font-mono tracking-[0.22em] uppercase bg-[#0c2738] hover:bg-[#12364e] text-[#fdfbf7] border border-[#c5a059]/50 shadow-sm hover:shadow-md transition-all duration-300 font-medium group cursor-pointer"
               >
                 <span>VIEW MORE</span>
                 <span className="text-[#d4af37] text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -140,10 +159,10 @@ export const RithanyaaSection: React.FC = () => {
       </div>
 
       {/* --- 2. ORNATE LOTUS SEPARATOR LINE --- */}
-      <div className="relative z-10 shrink-0 w-full flex items-center justify-center py-1.5 px-6">
+      <div className="relative z-10 shrink-0 w-full flex items-center justify-center py-2 sm:py-2.5 px-4 sm:px-6">
         <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#b38e5d]/40 to-[#b38e5d]/60" />
         <div className="px-3 text-[#b38e5d] opacity-85">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M12 4c-1.5 3-4 6-4 9a4 4 0 0 0 8 0c0-3-2.5-6-4-9z" />
             <path d="M6 13c0-2 1.5-4 3-5.5C8 9 7 11 7 13a5 5 0 0 0 5 5 5 5 0 0 0 5-5c0-2-1-4-2-5.5 1.5 1.5 3 3.5 3 5.5a5 5 0 0 1-10 0z" />
           </svg>
@@ -152,24 +171,24 @@ export const RithanyaaSection: React.FC = () => {
       </div>
 
       {/* --- 3. HORIZONTAL CONCERT MOMENTS PHOTO CARDS --- */}
-      <div className="relative z-10 shrink-0 w-full py-2.5 sm:py-3.5 px-4 sm:px-8 overflow-hidden">
-        <div className="animate-marquee flex gap-4 sm:gap-5 items-center">
+      <div className="relative z-10 shrink-0 w-full py-2 sm:py-3.5 px-2 sm:px-8 overflow-hidden">
+        <div className="animate-marquee flex gap-3 sm:gap-5 items-center">
           {infiniteMoments.map((item, idx) => (
             <div
               key={idx}
               onClick={() => openLightbox(idx % moments.length)}
-              className="group relative w-56 sm:w-64 md:w-72 lg:w-80 h-36 sm:h-40 md:h-44 lg:h-48 rounded-2xl overflow-hidden border border-[#c5a059]/40 shadow-lg shrink-0 transition-transform duration-300 hover:scale-103 cursor-pointer bg-stone-900"
+              className="group relative w-44 xs:w-52 sm:w-64 md:w-72 lg:w-80 h-28 xs:h-32 sm:h-40 md:h-44 lg:h-48 rounded-xl sm:rounded-2xl overflow-hidden border border-[#c5a059]/40 shadow-md shrink-0 transition-transform duration-300 hover:scale-103 cursor-pointer bg-stone-900"
             >
               {/* Photo Background (Clean without text) */}
               <Image
                 src={resolveImageUrl(item.imageUrl || stagePhotoUrl)}
                 alt={item.title || "Concert Moment"}
                 fill
-                sizes="(max-width: 768px) 260px, (max-width: 1200px) 320px, 360px"
+                sizes="(max-width: 640px) 210px, (max-width: 1024px) 280px, 360px"
                 className={`object-cover ${item.offset || "object-center"} transform transition-transform duration-500 group-hover:scale-106`}
               />
               {/* Subtle Inset Gold Hairline Frame */}
-              <div className="absolute inset-1.5 rounded-xl border border-white/20 pointer-events-none group-hover:border-[#d4af37]/60 transition-colors" />
+              <div className="absolute inset-1 sm:inset-1.5 rounded-lg sm:rounded-xl border border-white/20 pointer-events-none group-hover:border-[#d4af37]/60 transition-colors" />
             </div>
           ))}
         </div>
@@ -179,15 +198,15 @@ export const RithanyaaSection: React.FC = () => {
       {selectedPhotoIndex !== null && (
         <div
           onClick={closeLightbox}
-          className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-8 animate-fadeIn"
         >
           {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-stone-300 hover:text-white p-2.5 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-colors z-50 cursor-pointer"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 text-stone-300 hover:text-white p-2.5 sm:p-3 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-colors z-50 cursor-pointer"
             aria-label="Close Fullscreen View"
           >
-            <X size={22} />
+            <X size={20} className="sm:w-5 sm:h-5" />
           </button>
 
           {/* Previous Button */}
@@ -196,10 +215,10 @@ export const RithanyaaSection: React.FC = () => {
               e.stopPropagation();
               prevPhoto();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-3 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-2.5 sm:p-3.5 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
             aria-label="Previous Photo"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={22} className="sm:w-6 sm:h-6" />
           </button>
 
           {/* Next Button */}
@@ -208,16 +227,21 @@ export const RithanyaaSection: React.FC = () => {
               e.stopPropagation();
               nextPhoto();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-3 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-2.5 sm:p-3.5 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
             aria-label="Next Photo"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={22} className="sm:w-6 sm:h-6" />
           </button>
+
+          {/* Photo Counter Badge */}
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-50 px-3.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm border border-white/20 text-white font-mono text-[11px] sm:text-xs tracking-widest">
+            {selectedPhotoIndex + 1} / {moments.length}
+          </div>
 
           {/* Pure Floating Image */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full h-[88vh] max-w-6xl flex items-center justify-center pointer-events-none"
+            className="relative w-full h-[78vh] sm:h-[88vh] max-w-6xl flex items-center justify-center pointer-events-none"
           >
             <div className="relative w-full h-full pointer-events-auto">
               <Image
