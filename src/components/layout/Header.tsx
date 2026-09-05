@@ -79,23 +79,23 @@ export const Header: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-out ${
         isPastHero
-          ? "bg-[#faf7f2]/92 dark:bg-stone-950/92 backdrop-blur-md border-b border-stone-200/60 dark:border-stone-800/60 shadow-xs py-3.5 sm:py-4"
-          : "bg-transparent py-5 sm:py-6"
+          ? "bg-[#faf7f2]/95 dark:bg-stone-950/95 backdrop-blur-md border-b border-stone-200/60 dark:border-stone-800/60 shadow-xs py-2.5 sm:py-4"
+          : "bg-transparent py-3.5 sm:py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Left Side: Logo & Date / Location */}
         <a
           href="#"
           onClick={handleLogoClick}
-          className="flex items-center gap-3 sm:gap-4 group cursor-pointer"
+          className="flex items-center gap-2 sm:gap-4 group cursor-pointer min-w-0"
         >
           <MandalaLogo
-            size={34}
+            size={28}
             color="#b38e5d"
-            className="shrink-0 transition-transform duration-500 group-hover:rotate-45"
+            className="shrink-0 transition-transform duration-500 group-hover:rotate-45 sm:w-[34px] sm:h-[34px]"
           />
-          <div className="flex items-center gap-2.5 text-[11px] sm:text-[12.5px] tracking-[0.22em] font-medium text-stone-800 dark:text-stone-200 uppercase select-none">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 text-[9.5px] xs:text-[11px] sm:text-[12.5px] tracking-[0.14em] sm:tracking-[0.22em] font-medium text-stone-800 dark:text-stone-200 uppercase select-none truncate">
             <span className="whitespace-nowrap">{navigationConfig.ceremonyDate}</span>
             <span className="text-[#b38e5d] font-bold text-xs mx-0.5">•</span>
             <span className="whitespace-nowrap">{navigationConfig.location}</span>
@@ -134,21 +134,21 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center">
+        <div className="flex md:hidden items-center shrink-0">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="p-2 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white transition-colors cursor-pointer"
+            className="p-2 -mr-1 text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white transition-colors cursor-pointer rounded-lg hover:bg-black/5"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#faf7f2]/95 dark:bg-stone-950/95 backdrop-blur-lg border-b border-stone-200/50 dark:border-stone-800/50 px-6 py-6 transition-all duration-300 shadow-lg">
-          <div className="flex flex-col gap-4">
+        <div className="md:hidden bg-[#faf7f2]/98 dark:bg-stone-950/98 backdrop-blur-xl border-b border-stone-200/70 dark:border-stone-800/70 px-5 py-5 transition-all duration-300 shadow-xl animate-fadeIn">
+          <div className="flex flex-col gap-1">
             {navigationConfig.navItems.map((item: NavItem) => {
               const isActive = activeItem === item.label;
               return (
@@ -159,10 +159,10 @@ export const Header: React.FC = () => {
                     handleNavClick(e, item.href, item.label);
                     setMobileMenuOpen(false);
                   }}
-                  className={`flex items-center justify-between text-xs tracking-[0.2em] font-medium uppercase py-2 border-b border-stone-200/40 dark:border-stone-800/40 transition-colors cursor-pointer ${
+                  className={`flex items-center justify-between text-[11px] tracking-[0.22em] font-medium uppercase py-3 px-3 rounded-lg border-b border-stone-200/40 dark:border-stone-800/40 transition-all cursor-pointer ${
                     isActive
-                      ? "text-[#b38e5d] font-semibold"
-                      : "text-stone-700 dark:text-stone-300 hover:text-[#b38e5d]"
+                      ? "text-[#b38e5d] bg-[#b38e5d]/10 font-semibold"
+                      : "text-stone-700 dark:text-stone-300 hover:text-[#b38e5d] hover:bg-stone-100/50"
                   }`}
                 >
                   <span>{item.label}</span>

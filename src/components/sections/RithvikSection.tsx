@@ -5,24 +5,26 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 import siteImages, { resolveImageUrl } from "@/config/images";
+import { KalasamIcon } from "@/components/icons/KalasamIcon";
 
 export const RithvikSection: React.FC = () => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
-  // Column spans mapping matching a balanced 2-row layout (Row 1: 3 items of 4 cols, Row 2: 4 items of 3 cols)
+  // Column spans mapping for desktop 2-row layout (Row 1: 3 items of 4 cols, Row 2: 4 items of 3 cols)
+  // and mobile 2-column mosaic layout (Item 1 is full-width feature, Items 2-7 are 2-col pairs)
   const colSpans = [
-    "col-span-1 sm:col-span-2 lg:col-span-4", // 1. The Morning Begins
-    "col-span-1 sm:col-span-1 lg:col-span-4", // 2. Preparation
-    "col-span-1 sm:col-span-1 lg:col-span-4", // 3. Agni Homa
-    "col-span-1 sm:col-span-1 lg:col-span-3", // 4. In Prayer & Dhyanam
-    "col-span-1 sm:col-span-1 lg:col-span-3", // 5. Yajnopavita Dharanam
-    "col-span-1 sm:col-span-1 lg:col-span-3", // 6. Gayatri Upadesham
-    "col-span-1 sm:col-span-1 lg:col-span-3", // 7. Elders Blessings
+    "col-span-2 lg:col-span-4", // 1. The Morning Begins (Featured full-width on mobile)
+    "col-span-1 lg:col-span-4", // 2. Preparation
+    "col-span-1 lg:col-span-4", // 3. Agni Homa
+    "col-span-1 lg:col-span-3", // 4. In Prayer & Dhyanam
+    "col-span-1 lg:col-span-3", // 5. Yajnopavita Dharanam
+    "col-span-1 lg:col-span-3", // 6. Gayatri Upadesham
+    "col-span-1 lg:col-span-3", // 7. Elders Blessings
   ];
 
   const moments = siteImages.rithvik.moments.map((item, idx) => ({
     ...item,
-    colSpan: colSpans[idx] || "col-span-1 sm:col-span-1 lg:col-span-3",
+    colSpan: colSpans[idx] || "col-span-1 lg:col-span-3",
   }));
 
   const openLightbox = (index: number) => {
@@ -63,34 +65,37 @@ export const RithvikSection: React.FC = () => {
   return (
     <section
       id="rithvik"
-      className="relative w-full min-h-screen lg:h-screen lg:min-h-[720px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] py-4 sm:py-5 px-3 sm:px-6 lg:px-10 scroll-mt-0 overflow-hidden"
+      className="relative w-full min-h-0 lg:h-screen lg:min-h-[720px] lg:max-h-[1080px] flex flex-col justify-between bg-[#faf7f2] text-[#3e1f14] py-10 sm:py-12 lg:py-5 px-4 sm:px-6 lg:px-10 scroll-mt-0 overflow-hidden"
     >
       <div className="w-full max-w-[1480px] mx-auto flex-1 flex flex-col justify-between">
         {/* --- 1. HEADER SECTION --- */}
-        <div className="text-center max-w-3xl mx-auto flex flex-col items-center pt-1">
-          {/* Sacred Kalasam Icon */}
-          <div className="relative w-6 h-6 sm:w-7 sm:h-7 mb-1 flex items-center justify-center">
-            <Image
-              src="/images/hero/kalasam.png"
-              alt="Kalasam"
-              width={26}
-              height={26}
-              className="object-contain"
-            />
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center pt-1 mb-2 sm:mb-3">
+          {/* Sacred Kalasam Icon with Subtle Glow */}
+          <div className="relative mb-1.5 flex items-center justify-center">
+            <div className="absolute -inset-1 bg-[#d4af37]/20 rounded-full blur-xs" />
+            <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center z-10">
+              <Image
+                src="/images/hero/Kalasam.png"
+                alt="Kalasam"
+                width={32}
+                height={32}
+                className="object-contain drop-shadow-xs"
+              />
+            </div>
           </div>
 
           {/* Date & Time */}
-          <span className="text-[10.5px] sm:text-xs font-mono tracking-[0.25em] text-[#b38e5d] uppercase font-semibold mb-1">
+          <span className="text-[10px] sm:text-xs font-mono tracking-[0.25em] text-[#b38e5d] uppercase font-semibold mb-1">
             JULY 5, 2026 &nbsp;•&nbsp; MORNING
           </span>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight font-normal mb-1 leading-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#4a0e17] tracking-tight font-normal mb-1 leading-tight">
             Rithvik’s Upanayanam
           </h2>
 
           {/* Lotus Divider */}
-          <div className="flex items-center justify-center gap-2.5 w-28 mx-auto my-1 opacity-80">
+          <div className="flex items-center justify-center gap-2.5 w-28 mx-auto my-1.5 opacity-80">
             <div className="h-[1px] flex-1 bg-[#b38e5d]" />
             <svg
               className="w-3.5 h-3.5 text-[#b38e5d]"
@@ -111,38 +116,66 @@ export const RithvikSection: React.FC = () => {
           </p>
 
           {/* Description */}
-          <p className="text-xs sm:text-[13px] text-[#3e1f14] leading-relaxed max-w-xl mx-auto font-light">
+          <p className="text-xs sm:text-[13px] text-[#3e1f14] leading-relaxed max-w-xl mx-auto font-light px-2">
             Surrounded by love, guided by tradition, Rithvik took his sacred step into a life of learning, discipline and responsibility.
           </p>
         </div>
 
-        {/* --- 2. EXPANDED PHOTO MOMENTS GRID WITH LARGER GAPS --- */}
-        <div className="flex-1 min-h-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 sm:gap-4 lg:gap-5 py-2.5 items-stretch">
-          {moments.map((item, idx) => (
-            <div
-              key={item.id}
-              onClick={() => openLightbox(idx)}
-              className={`group relative rounded-2xl overflow-hidden border border-[#c5a059]/40 shadow-sm flex flex-col justify-end p-3 transition-all duration-300 hover:shadow-xl hover:border-[#b38e5d] hover:scale-[1.015] cursor-pointer ${item.colSpan} min-h-[140px] sm:min-h-[160px] lg:min-h-0 h-full bg-stone-900`}
-            >
-              {/* Image Layer (Pure Photo Display) */}
-              <Image
-                src={resolveImageUrl(item.imageUrl)}
-                alt={item.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover object-center transform transition-transform duration-700 group-hover:scale-106"
-              />
+        {/* --- 2. EXPANDED PHOTO MOMENTS GRID WITH MOBILE-OPTIMIZED MOSAIC --- */}
+        <div className="flex-1 min-h-0 grid grid-cols-2 lg:grid-cols-12 gap-3 xs:gap-3.5 sm:gap-4 lg:gap-5 py-3 lg:py-2.5 items-stretch">
+          {moments.map((item, idx) => {
+            const isFirstFeatured = idx === 0;
 
-              {/* Inset Gold Hairline Frame */}
-              <div className="absolute inset-1.5 rounded-xl border border-white/20 pointer-events-none group-hover:border-[#d4af37]/60 transition-colors" />
-            </div>
-          ))}
+            return (
+              <div
+                key={item.id}
+                onClick={() => openLightbox(idx)}
+                className={`group relative rounded-xl sm:rounded-2xl overflow-hidden border border-[#c5a059]/40 shadow-xs flex flex-col justify-end p-2.5 sm:p-3 transition-all duration-300 hover:shadow-xl hover:border-[#b38e5d] hover:scale-[1.015] cursor-pointer ${item.colSpan} ${
+                  isFirstFeatured
+                    ? "min-h-[170px] xs:min-h-[190px] sm:min-h-[220px] lg:min-h-0 aspect-[16/10] lg:aspect-auto"
+                    : "min-h-[125px] xs:min-h-[140px] sm:min-h-[160px] lg:min-h-0 aspect-[4/3] lg:aspect-auto"
+                } h-full bg-stone-900`}
+              >
+                {/* Image Layer */}
+                <Image
+                  src={resolveImageUrl(item.imageUrl)}
+                  alt={item.title}
+                  fill
+                  sizes={
+                    isFirstFeatured
+                      ? "(max-width: 1024px) 100vw, 33vw"
+                      : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  }
+                  className="object-cover object-center transform transition-transform duration-700 group-hover:scale-106"
+                />
+
+                {/* Mobile Subtle Dark Scrim on Bottom for Title Readability */}
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none lg:hidden" />
+
+                {/* Mobile Photo Captions */}
+                <div className="relative z-10 lg:hidden flex items-end justify-between w-full">
+                  <div className="text-left">
+                    <span className="text-[9px] font-mono tracking-wider text-[#f6d788] uppercase block leading-tight font-medium">
+                      {item.category || "Ritual"}
+                    </span>
+                    <h4 className="text-[11.5px] xs:text-xs font-serif text-white font-medium leading-tight drop-shadow-sm truncate max-w-[140px] xs:max-w-[170px]">
+                      {item.title}
+                    </h4>
+                  </div>
+                  <span className="text-[10px] text-[#f6d788]/80 font-mono">⤢</span>
+                </div>
+
+                {/* Inset Gold Hairline Frame */}
+                <div className="absolute inset-1 sm:inset-1.5 rounded-lg sm:rounded-xl border border-white/20 pointer-events-none group-hover:border-[#d4af37]/60 transition-colors" />
+              </div>
+            );
+          })}
         </div>
 
         {/* --- 3. BOTTOM SACRED BANNER & VIEW MORE BUTTON --- */}
-        <div className="shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 pb-1 border-t border-[#c5a059]/25">
+        <div className="shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 lg:pt-2 pb-1 border-t border-[#c5a059]/25 text-center sm:text-left">
           {/* Sacred Quote */}
-          <div className="flex items-center gap-2 text-[#3e1f14] text-center sm:text-left">
+          <div className="flex items-center gap-2 text-[#3e1f14]">
             <svg
               className="w-3.5 h-3.5 text-[#b38e5d] shrink-0 hidden sm:block"
               viewBox="0 0 24 24"
@@ -153,7 +186,7 @@ export const RithvikSection: React.FC = () => {
               <path d="M12 4c-1.5 3-4 6-4 9a4 4 0 0 0 8 0c0-3-2.5-6-4-9z" />
               <path d="M6 13c0-2 1.5-4 3-5.5C8 9 7 11 7 13a5 5 0 0 0 5 5 5 5 0 0 0 5-5c0-2-1-4-2-5.5 1.5 1.5 3 3.5 3 5.5a5 5 0 0 1-10 0z" />
             </svg>
-            <p className="font-serif italic text-[11.5px] sm:text-xs md:text-[13px] tracking-wide text-[#3e1f14]">
+            <p className="font-serif italic text-[11px] sm:text-xs md:text-[13px] tracking-wide text-[#3e1f14]">
               &ldquo;In the light of knowledge, may you walk with clarity. In the strength of tradition, may you live with purpose.&rdquo;
             </p>
           </div>
@@ -161,7 +194,7 @@ export const RithvikSection: React.FC = () => {
           {/* View More Button */}
           <a
             href="/gallery?category=rithvik"
-            className="inline-flex items-center gap-2.5 px-6 py-2 rounded-full text-xs font-mono tracking-[0.22em] uppercase bg-[#0d2a1c] hover:bg-[#133c28] text-[#fdfbf7] border border-[#c5a059]/50 shadow-sm hover:shadow-md transition-all duration-300 font-medium group cursor-pointer shrink-0"
+            className="inline-flex items-center gap-2.5 px-5 sm:px-6 py-2 rounded-full text-xs font-mono tracking-[0.22em] uppercase bg-[#0d2a1c] hover:bg-[#133c28] text-[#fdfbf7] border border-[#c5a059]/50 shadow-sm hover:shadow-md transition-all duration-300 font-medium group cursor-pointer shrink-0"
           >
             <span>VIEW MORE</span>
             <span className="text-[#d4af37] text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -173,15 +206,15 @@ export const RithvikSection: React.FC = () => {
       {selectedPhotoIndex !== null && (
         <div
           onClick={closeLightbox}
-          className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-8 animate-fadeIn"
         >
           {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-stone-300 hover:text-white p-2.5 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-colors z-50 cursor-pointer"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 text-stone-300 hover:text-white p-2.5 sm:p-3 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-colors z-50 cursor-pointer"
             aria-label="Close Fullscreen View"
           >
-            <X size={22} />
+            <X size={20} className="sm:w-5 sm:h-5" />
           </button>
 
           {/* Previous Button */}
@@ -190,10 +223,10 @@ export const RithvikSection: React.FC = () => {
               e.stopPropagation();
               prevPhoto();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-3 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-2.5 sm:p-3.5 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
             aria-label="Previous Photo"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={22} className="sm:w-6 sm:h-6" />
           </button>
 
           {/* Next Button */}
@@ -202,16 +235,26 @@ export const RithvikSection: React.FC = () => {
               e.stopPropagation();
               nextPhoto();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-3 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-stone-200 hover:text-white p-2.5 sm:p-3.5 rounded-full bg-stone-900/85 hover:bg-stone-800 border border-white/20 transition-all z-50 hover:scale-110 cursor-pointer"
             aria-label="Next Photo"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={22} className="sm:w-6 sm:h-6" />
           </button>
 
-          {/* Lightbox Pure Image Container (No borders, pure image display) */}
+          {/* Photo Counter Badge & Title at Top */}
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-50 flex items-center gap-2">
+            <span className="px-3.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm border border-white/20 text-white font-mono text-[11px] sm:text-xs tracking-widest">
+              {selectedPhotoIndex + 1} / {moments.length}
+            </span>
+            <span className="hidden xs:inline-block px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-[#c5a059]/40 text-[#f6d788] text-[11px] font-serif">
+              {moments[selectedPhotoIndex].title}
+            </span>
+          </div>
+
+          {/* Lightbox Pure Image Container */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full h-[88vh] max-w-6xl flex items-center justify-center pointer-events-none"
+            className="relative w-full h-[76vh] sm:h-[88vh] max-w-6xl flex items-center justify-center pointer-events-none"
           >
             <div className="relative w-full h-full pointer-events-auto">
               <Image
@@ -223,6 +266,13 @@ export const RithvikSection: React.FC = () => {
                 className="object-contain drop-shadow-2xl"
               />
             </div>
+          </div>
+
+          {/* Bottom Caption in Lightbox on Mobile */}
+          <div className="absolute bottom-4 inset-x-0 text-center pointer-events-none px-4">
+            <p className="text-xs sm:text-sm font-serif text-[#f6d788] drop-shadow-md">
+              {moments[selectedPhotoIndex].title} • {moments[selectedPhotoIndex].desc}
+            </p>
           </div>
         </div>
       )}

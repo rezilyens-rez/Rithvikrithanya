@@ -6,7 +6,7 @@
     "invitationBackground": "/images/hero/invitation bg frame.png",
     "sideFrame": "/images/hero/sideframe1.png",
     "sitharaIcon": "/images/hero/sithara.png",
-    "kalasamIcon": "/images/hero/kalasam.png"
+    "kalasamIcon": "/images/hero/Kalasam.png"
   },
   "rithanyaa": {
     "stagePhoto": "https://lh3.googleusercontent.com/pw/AP1GczP0ffn8nZk1TsXowQZ6SEW412EK3gyY2nCQg2g4W0E4YMaKZAiSoRfdElRB8_TaCwwSW5FFoWNnWy5xNkJLii9uMz4gYyuoJ7GU1i7d6c67xs-uQLo=w1600",
@@ -71,7 +71,7 @@
     ]
   },
   "rithvik": {
-    "kalasamIcon": "/images/hero/kalasam.png",
+    "kalasamIcon": "/images/hero/Kalasam.png",
     "moments": [
       {
         "id": 1,
