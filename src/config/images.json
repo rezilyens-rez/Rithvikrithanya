@@ -1,6 +1,7 @@
 {
   "hero": {
-    "backgroundImage": "/images/hero/HeroImage.png"
+    "backgroundImage": "/images/hero/HeroImage.png",
+    "mobileBackgroundImage": "/images/hero/MobileViewNew.png"
   },
   "weekend": {
     "invitationBackground": "/images/hero/invitation bg frame.png",
