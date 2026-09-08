@@ -10,6 +10,7 @@ import {
   Music2,
   Flame,
   Sparkles,
+  Users,
 } from "lucide-react";
 import { siteImages, resolveImageUrl, resolveVideoEmbedUrl } from "@/config/images";
 
@@ -50,9 +51,10 @@ export const FilmsSection: React.FC = () => {
     const lowerTag = (tag || "").toLowerCase();
     if (lowerTag.includes("parayanam")) return Flame;
     if (lowerTag.includes("udaya")) return Sparkles;
+    if (lowerTag.includes("guest")) return Users;
     if (lowerTag.includes("sangeetha") || lowerTag.includes("music")) return Music2;
     if (lowerTag.includes("brahmopadesam")) return Film;
-    const fallbackIcons = [Flame, Sparkles, Music2, Film];
+    const fallbackIcons = [Flame, Sparkles, Users, Music2, Film];
     return fallbackIcons[index % fallbackIcons.length];
   };
 
@@ -130,20 +132,32 @@ export const FilmsSection: React.FC = () => {
               </div>
 
               {/* Glowing Golden Play Button */}
-              <div className="relative z-10 w-13 h-13 xs:w-16 xs:h-16 sm:w-22 sm:h-22 rounded-full bg-gradient-to-br from-[#f6d788] via-[#d4af37] to-[#9b6f38] text-stone-950 flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-[0_0_30px_rgba(212,175,55,0.6)]">
-                <Play className="w-5 h-5 xs:w-7 xs:h-7 sm:w-10 sm:h-10 fill-stone-950 ml-0.5 sm:ml-1 text-stone-950" />
+              <div className="relative z-10 w-11 h-11 xs:w-14 xs:h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f6d788] via-[#d4af37] to-[#9b6f38] text-stone-950 flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-[0_0_30px_rgba(212,175,55,0.6)]">
+                <Play className="w-5 h-5 xs:w-6 xs:h-6 sm:w-9 sm:h-9 fill-stone-950 ml-0.5 sm:ml-1 text-stone-950" />
               </div>
 
-              {/* Bottom Title & Subtitle Banner */}
-              <div className="absolute inset-x-0 bottom-0 p-3 xs:p-4 sm:p-7 bg-gradient-to-t from-black/98 via-black/85 to-transparent flex flex-col items-center text-center">
-                <h3 className="text-sm xs:text-lg sm:text-2xl md:text-3xl font-serif text-[#fdfbf7] tracking-wide font-normal max-w-2xl drop-shadow-md line-clamp-2">
+              {/* Bottom Title, Subtitle & Disclaimer Banner */}
+              <div className="absolute inset-x-0 bottom-0 p-2.5 xs:p-3.5 sm:p-6 bg-gradient-to-t from-black/98 via-black/85 to-transparent flex flex-col items-center text-center z-10">
+                <h3 className="text-xs xs:text-base sm:text-2xl md:text-3xl font-serif text-[#fdfbf7] tracking-wide font-normal max-w-2xl drop-shadow-md line-clamp-1 sm:line-clamp-2">
                   {currentVideo.title}
                 </h3>
-                <p className="text-[10px] xs:text-xs sm:text-sm text-stone-300 font-serif italic mt-0.5 sm:mt-1 max-w-lg line-clamp-1">
+                <p className="text-[9.5px] xs:text-xs sm:text-sm text-stone-300 font-serif italic mt-0.5 sm:mt-1 max-w-lg line-clamp-1">
                   {currentVideo.subtitle}
                 </p>
 
-                <span className="text-[9px] xs:text-[10px] sm:text-[11px] text-[#f6d788] font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] mt-1.5 sm:mt-2.5 font-medium">
+                {/* Disclaimer Callout on Thumbnail */}
+                {(currentVideo as { disclaimer?: string }).disclaimer && (
+                  <div className="mt-1.5 sm:mt-2.5 px-2.5 sm:px-4 py-1 sm:py-2 rounded-lg bg-black/70 backdrop-blur-md border border-[#d4af37]/40 max-w-2xl text-center shadow-lg">
+                    <p className="text-[8px] xs:text-[9.5px] sm:text-xs text-stone-200 font-serif italic leading-tight sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+                      <span className="font-sans font-semibold text-[#f6d788] not-italic mr-1 uppercase text-[7.5px] xs:text-[8.5px] sm:text-[10px] tracking-wider">
+                        Disclaimer:
+                      </span>
+                      {(currentVideo as { disclaimer?: string }).disclaimer}
+                    </p>
+                  </div>
+                )}
+
+                <span className="text-[8.5px] xs:text-[9.5px] sm:text-[11px] text-[#f6d788] font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] mt-1 sm:mt-2 font-medium">
                   CLICK TO PLAY FILM ▶
                 </span>
               </div>
@@ -194,8 +208,8 @@ export const FilmsSection: React.FC = () => {
           </div>
         )}
 
-        {/* Clean 4-Card Playlist Selector Below */}
-        <div className="mt-4 sm:mt-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        {/* Video Playlist Selector */}
+        <div className="mt-4 sm:mt-6 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
           {videos.map((vid, idx) => {
             const IconComponent = getVideoIcon(vid.tag, idx);
             const isSelected = idx === currentIndex;
