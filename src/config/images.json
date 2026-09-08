@@ -247,15 +247,6 @@
       },
       {
         "id": 3,
-        "title": "04 - July - 2026 Sangeetha Upanyasam | Rithanyaa | Chief Guest 60 FPS 4K Video",
-        "subtitle": "Kum. Rithanyaa • 4K 60FPS Chief Guest Highlights",
-        "duration": "4K Video",
-        "tag": "Chief Guest",
-        "posterImage": "https://img.youtube.com/vi/2xmBHP2WwKA/hqdefault.jpg",
-        "videoEmbedUrl": "https://youtu.be/2xmBHP2WwKA"
-      },
-      {
-        "id": 4,
         "title": "04 - July - 2026 Sangeetha Upanyasam | Andal Kalyanam | Rithanyaa | 60 FPS 4K Video",
         "subtitle": "Kum. Rithanyaa • 4K 60FPS Concert Video",
         "duration": "4K Video",
@@ -263,6 +254,15 @@
         "disclaimer": "Auditorium acoustics and noise reduction may have reduced the prominence of certain instruments and voice in this recording. This in no way reflects the significance of their contribution. We deeply value and gratefully acknowledge every accompanying artist whose talent enriched this event.",
         "posterImage": "https://img.youtube.com/vi/5X4V4bEjD3k/maxresdefault.jpg",
         "videoEmbedUrl": "https://youtu.be/5X4V4bEjD3k"
+      },
+      {
+        "id": 4,
+        "title": "04 - July - 2026 Sangeetha Upanyasam | Rithanyaa | Chief Guest 60 FPS 4K Video",
+        "subtitle": "Kum. Rithanyaa • 4K 60FPS Chief Guest Highlights",
+        "duration": "4K Video",
+        "tag": "Chief Guest",
+        "posterImage": "https://img.youtube.com/vi/2xmBHP2WwKA/hqdefault.jpg",
+        "videoEmbedUrl": "https://youtu.be/2xmBHP2WwKA"
       },
       {
         "id": 5,
