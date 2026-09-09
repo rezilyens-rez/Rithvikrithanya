@@ -53,6 +53,7 @@ export const FilmsSection: React.FC = () => {
     if (lowerTag.includes("udaya")) return Sparkles;
     if (lowerTag.includes("guest")) return Users;
     if (lowerTag.includes("sangeetha") || lowerTag.includes("music")) return Music2;
+    if (lowerTag.includes("skit") || lowerTag.includes("rez")) return Sparkles;
     if (lowerTag.includes("brahmopadesam")) return Film;
     const fallbackIcons = [Flame, Sparkles, Users, Music2, Film];
     return fallbackIcons[index % fallbackIcons.length];
@@ -209,7 +210,7 @@ export const FilmsSection: React.FC = () => {
         )}
 
         {/* Video Playlist Selector */}
-        <div className="mt-4 sm:mt-6 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
+        <div className="mt-4 sm:mt-6 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4">
           {videos.map((vid, idx) => {
             const IconComponent = getVideoIcon(vid.tag, idx);
             const isSelected = idx === currentIndex;
